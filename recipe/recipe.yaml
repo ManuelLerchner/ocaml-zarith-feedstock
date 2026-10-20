@@ -22,7 +22,7 @@ requirements:
     - ${{ compiler("ocaml") }}
     - make
   host:
-    - ocaml
+    - ocaml ${{ ocaml_compiler_version }}.*
     - ocaml-findlib >=1.9.8
     - gmp
 

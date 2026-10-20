@@ -3,13 +3,7 @@ set -euxo pipefail
 
 ./configure -installdir "${PREFIX}/lib/ocaml"
 
-# ocamlmklib records its -L options in zarith.cma/.cmxa, where prefix
-# relocation NUL-pads them (cf. conda-forge/ocaml-feedstock#132). Link with
-# -lgmp only and pass the search path through the environment; at use time
-# conda-ocaml-mkexe adds -L${CONDA_PREFIX}/lib.
-export LIBRARY_PATH="${PREFIX}/lib"
-
-make -j1 LIBS=-lgmp LDFLAGS=
+make -j1
 make install
 
 # In-tree tests cannot find libgmp on macOS: test executables carry an
